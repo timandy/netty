@@ -659,9 +659,8 @@ public final class Unpooled {
             CharBuffer buf = (CharBuffer) string;
             if (buf.hasArray()) {
                 return copiedBuffer(
-                        buf.array(),
-                        buf.arrayOffset() + buf.position() + offset,
-                        length, charset);
+                        CharBuffer.wrap(buf.array(), buf.arrayOffset() + buf.position() + offset, length),
+                        charset);
             }
 
             buf = buf.slice();
